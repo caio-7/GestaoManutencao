@@ -14,5 +14,6 @@ namespace GestaoManutencao.Data
 		
 		public DbSet<Cliente> Clientes { get; set; }
 		public DbSet<OrdemDeServico> OrdensDeServico { get; set; }
+		public DbSet<Parts> Parts { get; set; }
 	}
 }

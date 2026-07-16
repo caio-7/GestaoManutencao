@@ -12,7 +12,7 @@ namespace GestaoManutencao
 			// Add services to the container.
 
 			builder.Services.AddDbContext<GestaoManutencao.Data.OficinaContext>(options =>
-	options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal")));
+	        options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal")));
 
 			builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
