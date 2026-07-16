@@ -1,30 +1,29 @@
-Sistema de Gestão de Manutenção (API REST)
+# API de Gestão de Manutenção 💻🔌
 
-API RESTful desenvolvida em C# e .NET 8 para gerenciar o fluxo operacional de uma bancada de manutenção eletrônica. O sistema automatiza o cadastro de clientes, o controle de ordens de serviço (OS) e a geração de relatórios de saída para equipamentos reparados.
+Sistema de Back-end desenvolvido para gerenciar o fluxo de atendimento, clientes e peças de uma bancada de manutenção eletrônica. 
 
-## 🚀 Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
+* **Linguagem:** C# (.NET 8/ASP.NET Core)
+* **Banco de Dados:** SQL Server
+* **ORM:** Entity Framework Core
+* **Documentação de API:** Swagger (OpenAPI)
 
-*   **Linguagem:** C#
-*   **Framework:** .NET 8 (Web API)
-*   **Acesso a Dados (ORM):** Entity Framework Core
-*   **Banco de Dados:** SQL Server (LocalDB)
-*   **Documentação e Testes:** Swagger / OpenAPI
+## 🚀 Funcionalidades (Atuais)
+* **Gestão de Clientes:**
+  * Criação automática e inteligente de clientes atrelada à abertura de Ordens de Serviço (lógica "Find or Create").
+  * Dados de contato flexíveis (campos opcionais para e-mail, telefone, etc).
+* **Gestão de Ordens de Serviço (OS):**
+  * Abertura rápida de OS utilizando DTOs.
+  * Atualização de status e datas de fechamento independentes.
+  * Rota de diagnóstico (`PATCH`) para registrar defeitos técnicos após avaliação na bancada.
+  * Exclusão segura de registros.
+* **Gestão de Estoque:**
+  * Controle de peças cadastradas (CRUD).
 
-## ⚙️ Arquitetura e Funcionalidades
-
-O projeto foi estruturado utilizando o padrão de arquitetura MVC (Model-View-Controller) no back-end, focando em separação de responsabilidades e injeção de dependência.
-
-*   **Gestão de Clientes:** Operações de CRUD para cadastro e consulta de clientes.
-*   **Controle de Ordens de Serviço:** Abertura de OS com relacionamento direto de chaves estrangeiras (Foreign Keys) com a entidade de Cliente utilizando o recurso de *Eager Loading* do EF Core.
-*   **Exportação de Dados:** Geração dinâmica de recibos de ordens de serviço e exportação em formatos de arquivo físico (`.txt` e `.xml` serializado) para integração de sistemas e entrega ao cliente final.
-
-## 🛠️ Como executar o projeto localmente
-
-1. Clone este repositório no seu ambiente (Windows ou Linux):
-   `git clone https://github.com/caio-7/GestaoManutencao.git`
-2. Acesse a pasta do projeto e restaure as dependências do .NET.
-3. Certifique-se de ter o SQL Server (ou LocalDB) instalado e atualize o banco de dados rodando o comando no terminal:
+## ⚙️ Como executar o projeto
+1. Clone este repositório.
+2. Abra o projeto no Visual Studio.
+3. Abra o **Console do Gerenciador de Pacotes** ou **PowerShell do Desenvolvedor**.
+4. Atualize o banco de dados local executando o comando:
    `dotnet ef database update`
-4. Execute a aplicação:
-   `dotnet run`
-5. Acesse a interface interativa do Swagger através da porta gerada no `localhost` para testar os endpoints.
+5. Execute a aplicação (F5). O navegador abrirá automaticamente na interface do Swagger para testes de rotas.
