@@ -23,7 +23,7 @@
 
     async function buscarClientes() {
         try {
-            const resposta = await fetch('https://localhost:7187/api/Cliente');
+            const resposta = await fetch('[https://gestao-manutencao.onrender.com](https://gestao-manutencao.onrender.com)/api/Cliente');
             clientes.value = await resposta.json();
         } catch (erro) {
             console.error('Erro ao buscar clientes:', erro);
@@ -51,8 +51,8 @@
 
 			const isEdicao = pacoteCliente.id > 0;
 			const urlDaApi = isEdicao
-				? `https://localhost:7187/api/Cliente/${pacoteCliente.id}`
-				: 'https://localhost:7187/api/Cliente';
+				? `[https://gestao-manutencao.onrender.com](https://gestao-manutencao.onrender.com)/api/Cliente/${pacoteCliente.id}`
+				: '[https://gestao-manutencao.onrender.com](https://gestao-manutencao.onrender.com)/api/Cliente';
 
 			const resposta = await fetch(urlDaApi, {
 				method: isEdicao ? 'PUT' : 'POST',
@@ -77,7 +77,7 @@
 	async function deletarCliente(id, nome) {
 		if (confirm(`Atenção: Deseja realmente excluir o cliente ${nome}?`)) {
 			try {
-				const resposta = await fetch(`https://localhost:7187/api/Cliente/${id}`, {
+				const resposta = await fetch(`[https://gestao-manutencao.onrender.com](https://gestao-manutencao.onrender.com)/api/Cliente/${id}`, {
 					method: 'DELETE'
 				});
 
@@ -134,7 +134,7 @@
 
     async function buscarOrdensDeServico() {
         try {
-            const resposta = await fetch('https://localhost:7187/api/OrdemDeServico');
+            const resposta = await fetch('[https://gestao-manutencao.onrender.com](https://gestao-manutencao.onrender.com)/api/OrdemDeServico');
             ordensServico.value = await resposta.json();
         } catch (erro) {
             console.error('Erro ao buscar OS:', erro);
@@ -194,8 +194,8 @@
 
             const isEdicao = pacoteOS.id > 0;
             const urlDaApi = isEdicao
-                ? `https://localhost:7187/api/OrdemDeServico/${pacoteOS.id}`
-                : 'https://localhost:7187/api/OrdemDeServico';
+                ? `[https://gestao-manutencao.onrender.com](https://gestao-manutencao.onrender.com)/api/OrdemDeServico/${pacoteOS.id}`
+                : '[https://gestao-manutencao.onrender.com](https://gestao-manutencao.onrender.com)/api/OrdemDeServico';
 
             const resposta = await fetch(urlDaApi, {
                 method: isEdicao ? 'PUT' : 'POST',
@@ -217,7 +217,7 @@
     async function deletarOS(id) {
         if (confirm(`Atenção: Tem certeza que deseja excluir a OS #${id}? Essa ação não tem volta.`)) {
             try {
-                const resposta = await fetch(`https://localhost:7187/api/OrdemDeServico/${id}`, {
+                const resposta = await fetch(`[https://gestao-manutencao.onrender.com](https://gestao-manutencao.onrender.com)/api/OrdemDeServico/${id}`, {
                     method: 'DELETE'
                 });
 
