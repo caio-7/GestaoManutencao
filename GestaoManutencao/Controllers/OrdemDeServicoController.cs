@@ -224,6 +224,35 @@ namespace GestaoManutencao.Controllers
 				Defeito = os.Defeito
 			});
 		}
+
+		[HttpPut("{id}")]
+		public IActionResult AtualizarOrdemCompleta(int id, [FromBody] OrdemDeServico dadosAtualizados)
+		{
+			// 1. Busca a OS original no banco de dados
+			var os = _bancoDeDados.OrdensDeServico.Find(id);
+
+			if (os == null)
+			{
+				return NotFound("Ordem de Serviço não encontrada.");
+			}
+
+			// 2. Transfere os dados novos que vieram do Vue para a OS do banco
+			os.Descricao = dadosAtualizados.Descricao;
+			os.Defeito = dadosAtualizados.Defeito;
+			os.Status = dadosAtualizados.Status;
+			os.ValorTotal = dadosAtualizados.ValorTotal;
+			os.DataFechamento = dadosAtualizados.DataFechamento;
+
+			// 3. Salva tudo de uma vez
+			_bancoDeDados.SaveChanges();
+
+			return Ok(new
+			{
+				Mensagem = "OS atualizada com sucesso na bancada!",
+				NumeroOS = os.Id
+			});
+		}
+
 	}
 
 

@@ -11,6 +11,16 @@ namespace GestaoManutencao
 
 			// Add services to the container.
 
+			builder.Services.AddCors(options =>
+			{
+				options.AddPolicy("PermitirFrontEndVue", policy =>
+				{
+					policy.WithOrigins("http://localhost:5173") // A porta onde o Front-end está rodando
+						  .AllowAnyHeader()
+						  .AllowAnyMethod();
+				});
+			});
+
 			builder.Services.AddDbContext<GestaoManutencao.Data.OficinaContext>(options =>
 	        options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal")));
 
@@ -32,8 +42,9 @@ namespace GestaoManutencao
 
             app.UseAuthorization();
 
+			app.UseCors("PermitirFrontEndVue");
 
-            app.MapControllers();
+			app.MapControllers();
 
             app.Run();
         }
