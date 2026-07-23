@@ -22,7 +22,7 @@ namespace GestaoManutencao
 			});
 
 			builder.Services.AddDbContext<GestaoManutencao.Data.OficinaContext>(options =>
-	        options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal")));
+	        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 			builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -31,22 +31,30 @@ namespace GestaoManutencao
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+			
+			using (var scope = app.Services.CreateScope())
+			{
+				var db = scope.ServiceProvider.GetRequiredService<GestaoManutencao.Data.OficinaContext>();
+				db.Database.Migrate();
+			}
 
-            app.UseHttpsRedirection();
+			// Configure the HTTP request pipeline.
+			if (app.Environment.IsDevelopment())
+			{
+				app.UseSwagger();
+				app.UseSwaggerUI();
+			}
 
-            app.UseAuthorization();
+			app.UseHttpsRedirection();
 
+			
 			app.UseCors("PermitirFrontEndVue");
+
+			app.UseAuthorization();
 
 			app.MapControllers();
 
-            app.Run();
-        }
+			app.Run();
+		}
     }
 }
