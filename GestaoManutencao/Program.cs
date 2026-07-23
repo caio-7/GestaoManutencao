@@ -22,7 +22,10 @@ namespace GestaoManutencao
 			});
 
 			builder.Services.AddDbContext<GestaoManutencao.Data.OficinaContext>(options =>
-	        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+				options.UseSqlServer(
+					builder.Configuration.GetConnectionString("DefaultConnection"),
+					sqlServerOptions => sqlServerOptions.EnableRetryOnFailure()
+				));
 
 			builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
