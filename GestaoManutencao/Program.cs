@@ -15,7 +15,7 @@ namespace GestaoManutencao
 			{
 				options.AddPolicy("PermitirFrontEndVue", policy =>
 				{
-					policy.WithOrigins("http://localhost:5173") // A porta onde o Front-end está rodando
+					policy.AllowAnyOrigin() 
 						  .AllowAnyHeader()
 						  .AllowAnyMethod();
 				});
