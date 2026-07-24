@@ -39,7 +39,13 @@
         mostrarModalCliente.value = false;
     }
 
-	async function salvarCliente() {
+    async function salvarCliente() {
+
+		if (!novoCliente.value.nome || novoCliente.value.nome.trim() === '') {
+			alert("⚠️ Campo obrigatório: Nome");
+			return; 
+		}
+
 		try {
 			const pacoteCliente = {
 				id: novoCliente.value.id || 0,
@@ -316,12 +322,12 @@
 
                     <div class="grupo-input">
                         <label>Equipamento <span class="asterisco">*</span></label>
-                        <input type="text" v-model="novaOs.descricao" placeholder="Ex: Placa Mãe ECS P4VMM2..." />
+                        <input type="text" v-model="novaOs.descricao" placeholder="" />
                     </div>
 
                     <div class="grupo-input">
                         <label>Defeito Relatado</label>
-                        <input type="text" v-model="novaOs.defeito" placeholder="Ex: Não dá vídeo" />
+                        <input type="text" v-model="novaOs.defeito" placeholder="" />
                     </div>
 
                     <div class="campos-lado-a-lado">
@@ -406,7 +412,7 @@
 
                     <div class="grupo-input">
                         <label>Nome <span class="asterisco">*</span></label>
-                        <input type="text" v-model="novoCliente.nome" placeholder="Ex: João Silva" />
+                        <input type="text" v-model="novoCliente.nome" placeholder="Digite o nome" />
                     </div>
                     <div class="grupo-input">
                         <label>Telefone</label>
@@ -414,7 +420,7 @@
                     </div>
                     <div class="grupo-input">
                         <label>Email</label>
-                        <input type="email" v-model="novoCliente.email" placeholder="joao@email.com" />
+                        <input type="email" v-model="novoCliente.email" placeholder="Digite o email" />
                     </div>
 
                     <div class="modal-botoes">
